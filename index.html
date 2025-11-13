@@ -54,10 +54,47 @@
         }
 
         .heading {
-            gap: 10px;
             margin-top: 20px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        #wave {
+            padding-bottom: 8px;
+           
+            animation: waveanimation 3s 1s linear;
+        }
+
+        /* #wave:hover{
+            transform: rotate(0.1turn);
+        } */
+
+        @keyframes waveanimation {
+            0% {
+                transform: rotate(0.1turn);
+            }
+
+            10% {
+                transform: rotate(0turn);
+            }
+            20% {
+                transform: rotate(0.1turn);
+            }
+            30% {
+                transform: rotate(0turn);
+            }
+            40% {
+                transform: rotate(0.1turn);
+            }
+            50% {
+                transform: rotate(0turn);
+            }
+
+        }
+
+
 
         p {
             font-size: 18px;
@@ -100,10 +137,11 @@
 <body>
     <div class="card">
         <img src="image.jpeg" alt="">
-        <div class="heading flex">
-            <h1>Hey, I'm Tenjeeb👋</h1>
-            <p>NPC | Student | Learner🍵</p>
+        <div class="heading">
+            <h1>Hey, I'm Tenjeeb</h1>
+            <h1 id="wave">👋</h1>
         </div>
+        <p>NPC | Student | Learner🍵</p>
 
         <div class="links flex">
             <a href="https://www.instagram.com/tenjeeb14/" target="_blank">Instagram</a>
@@ -112,7 +150,7 @@
         </div>
         <footer class="flex">
             <p>
-                < Made with 🩵 by Tenjeeb >
+                < Made with 🩵 by Tenjeeb>
             </p>
         </footer>
 
