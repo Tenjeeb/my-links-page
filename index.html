@@ -14,7 +14,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: linear-gradient(135deg, #1f3e4b, #223c45, #2a5060);
             color: white;
             display: flex;
             align-items: center;
@@ -27,7 +27,7 @@
         .card {
             width: 400px;
             border: 1px solid rgba(91, 88, 88, 0.445);
-            box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.276);
+            box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.276);
             height: 600px;
             border-radius: 15px;
             display: flex;
@@ -64,8 +64,8 @@
 
         #wave {
             padding-bottom: 8px;
-
-            animation: waveanimation 3s 1.5s linear;
+            animation: name duration timing-function delay iteration-count direction fill-mode;
+            animation: waveanimation 3s 1.5s linear 3;
         }
 
         @keyframes waveanimation {
@@ -133,43 +133,54 @@
 
         footer p {
             font-size: 14px;
+            color: white;
         }
 
         #btn {
-            padding: 3px;
-            background-color: #03a9f4;
+            padding: 9px;
+            background-color: #03a8f4be;
             color: white;
-            border-radius: 5px;
+            border-radius: 20px;
             font-size: 15px;
             border: none;
             cursor: pointer;
-            transition: all 0.1s ease;
+            transition: all 0.2s ease;
         }
-          #btn:hover {
+
+        #btn:hover {
             background-color: #0288d1;
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
-        .thoughts{
-            margin-top: 25px;
+
+        .thoughts {
+            margin-top: 26px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
         }
-        .created{
+
+        .created {
             padding: 15px 50px;
             font-size: 15px;
-            margin-top: 10px;
+            margin-top: 3px;
             font-size: 15px;
             font-style: italic;
             color: #cfcfcf;
-            background-color: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            animation: fadeIn 1s ease forwards;
+            animation: fadeIn 1s ease-in forwards;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(1px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(1px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -189,12 +200,12 @@
             <a href="https://www.linkedin.com/in/tenjeeb-kc-a80860311/" target="_blank">LinkedIn</a>
         </div>
 
-        <!-- <div class="thoughts">
+        <div class="thoughts">
             <button id="btn">Random Thoughts</button>
-        </div> -->
+        </div>
         <footer class="flex">
             <p>
-                < Made by Tenjeeb >
+                < Made by Tenjeeb>
             </p>
         </footer>
 
@@ -202,33 +213,38 @@
     </div>
 
     <script>
-        
-        thoughts = ['"There is no perfect time for study. It can be done at 1:27 P.M."',
-            '"You need to love more what you do because at the end you will hate it"',
-            '"If two person agrees all the time, then one of them is useless"',
+
+        const thoughts = ['"There is no perfect time to study. You can do it even at 1:27 P.M."',
+            '"You need to love what you do more, because at the end you will hate it."',
+            '"If two people agrees all the time, then one of them is useless."',
+            '"Let\'s be human for once."',
+            '"How does it feel to be one of the beautiful people?"',
+            '"Is time even real? Or was it invented by watch companies to sell their watches?"'
         ]
-        
+
+        let i = 0  // Start from 0 index 
         let button = document.getElementById("btn")
-    
+        button.addEventListener("click", () => {
+            let result = thoughts[i]
+            let output = document.querySelector(".thoughts")
+            let div = document.createElement("div")
 
-        button.addEventListener("click" , () => {
-            let randomIndex = Math.floor(Math.random() * thoughts.length)
-            let result = thoughts[randomIndex]
-          
-                let output = document.querySelector(".thoughts")
-                let div = document.createElement("div")
+            // remove existing thought if any
+            let existing = document.querySelector(".created")
+            if (existing) {
+                existing.remove()
+            }
+            div.setAttribute("class", "created")
+            div.textContent = result
+            output.append(div)
 
-                // remove existing thought if any
-                let existing = document.querySelector(".created")
-                if(existing){
-                    existing.remove()
-                }
-                div.setAttribute("class", "created")
-                div.textContent = result
+            i++  // go th next thought on each click
 
-                output.append(div)
-       
-        
+            // restart from the beginning 
+            if (i >= thoughts.length) {
+                i = 0
+            }
+
         })
 
 
